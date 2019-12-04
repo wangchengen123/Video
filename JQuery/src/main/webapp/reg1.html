@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<input type="text" id="i1" >
+
+</body>
+<!-- 引入jQuery的类库 -->
+<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+<script type="text/javascript">
+/*
+  1.规则写在 / / 之间
+  2.开头用 ^  结束 $
+  3.[ ] 匹配的字符是哪些
+  4.{ } 指定出现的次数
+ */
+ 
+// 规则1: aaa
+	var reg1 = /^[a]{3}$/;
+// 规则2:abc三个字符共出现三次
+	var reg2 = /^[abc]{3}$/;
+// 规则3:0-9任意数字出现三次
+	var reg3 = /^[0-9]{3}$/;
+// 规则4:数字0-9 字母大小写
+	var reg4 = /^[A-z0-9]{3}$/;
+// 规则5:数字0-9 字母大小写 至少3位 最多7位
+	var reg5 = /^[A-z0-9]{3,7}$/;
+// 规则6:首字母大写其余小写,字符数大于5小于10
+	var reg6 = /^[A-Z]{1}[a-z]{4,9}$/;
+// 规则7:匹配手机号
+	var reg7 = /^[1]{1}[356789]{1}\d{9}$/;
+// 规则8:邮箱
+//	var reg8 = /^[A-z\d]{1,}@[a-z0-9]{1,}\.[a-z]{1,}$/;
+	var reg9 = /^\w+@[a-z0-9]+\.[a-z]+$/;
+// 汉字:^[\u4e00-\u9fa5]{0,}
+	var reg10 = /^[\u4e00-\u9fa5]{0,}$/;
+	$("#i1").keyup(function(){
+		if(reg10.test($("#i1").val())){
+			$("#s1").remove();
+			$("#i1").after("<span id='s1'> 符合规则</span>");
+			$("#s1").css("color","green");
+		}else{
+			$("#s1").remove();
+			$("#i1").after("<span id='s1'> 不符合规则</span>");
+			$("#s1").css("color","red");
+		}
+	});
+	
+	
+</script>
+</html>

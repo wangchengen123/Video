@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace:代表这个文件的命名空间，根据这个名称可以定位到这个文件 -->
+<mapper namespace="com.zhiyou.mapper.UserMapper">
+	
+	<resultMap type="user" id="userMap">
+		<id column="a_id" property="id"/>
+		<result column="a_name" property="name"/>
+		<result column="a_age" property="age"/>
+		<result column="username" property="username"/>
+		<result column="password" property="password"/>
+		<result column="sex" property="sex"/>
+	</resultMap>
+	
+	<!-- insert：表示插入语句 id：根据id中的值，能找到这个标签，然后执行里面的sql 
+		 parameterType：表示调用sql的时候需要传递的参数类型，如果传入的是model类，
+		  	 在sql中使用#{属性名} 来取出传入model对象里的值。
+			 如果只有一个参数，并且是基本数据类型， 可以省略不写，然后再sql中使用#{随便写}取值 
+		 resultType:代表sql返回的结果集类型 ，可以直接指定model 类，如果返回的是多条记录，
+		 	 会自动转换成对应 model类型的list集合。需要：列名与model属性一致 
+		 resultMap:当model属性名与数据库列明不匹配的时候可以定义resultMap 在其中指定，数据库列明所对应的model属性 -->
+	
+	<insert id="add" parameterType="user">
+		insert into user
+		values(#{id},#{truename},#{username},#{password},#{money},#{age});
+	</insert>
+	<delete id="delete" >
+		delete from user where id=#{asdasda};
+	</delete>
+
+	<update id="update" parameterType="user">
+
+		<!-- 动态sql标签： 
+			if:判断，可以用来判断传过来的参数的值，返回结果为boolean，如果为true则直接if 中的代码，如果false则不执行 
+			set：会帮我们自动写set关键字，并且会帮我们去除掉set作用域中最后一个逗号（，）
+			where:会帮我们自动写where关键字，并且会帮我们去除掉where作用域中的第一个and或or 
+			choose：相当于Java中的switch，里面有多个when标签，当有一个when标签匹配的时候，剩下 的则不执行，如果所有的when都没有进入，则进入otherwise 
+			trim:功能上类似与where，会在作用域的最前面加上指定前缀，并且可以去掉作用域中碰到的 第一个指定内容，需要去掉的内容可以是多个，用|分割，还可以 
+				指定后缀，并且去掉最后的相 关内容 
+			sql:用于定义单纯的sql，等待其他标签重复引用。 
+			include：用来引用sql标签 
+			foreach:循环标签其属性有： 
+				collection:如果接口参数没有使用注解指定key，其内容为参数类型，否则填Key 
+				item：会将循环集合内容取出然后赋值给其内元素 
+				spearator：每次循环的时候需要插入的分隔符 
+				index：循环的索引从0开始 
+				open：在循环开始的时候插入的内容（只执行一次） 
+				close：在循环结束后插入内容 （只执行一次） -->
+
+		<!-- update user set truename=#{truename} where id=#{id}; -->
+		update user
+		<set>
+			<if test="truename!=null">
+				truename=#{truename},
+			</if>
+			<if test="username!=null">
+				username=#{username},
+			</if>
+			<if test="password!=null">
+				password=#{password},
+			</if>
+			<if test="money!=0">
+				money=#{money},
+			</if>
+			<if test="age!=0">
+				age=#{age}
+			</if>
+			where id=#{id};
+		</set>
+	</update>
+
+
+	<select id="selectAll" resultMap="userMap" parameterType="Map">
+		select * from user
+		<where>
+			<if test="truename!=null">
+				truename like '%${truename}%'
+			</if>
+		</where>
+	</select>
+
+	<select id="selectByID" resultMap="userMap">
+		select * from user where id=#{12}
+	</select>
+
+	<select id="selectByName" resultType="user" parameterType="String">
+		select * from user where truename like '%${truename}%'
+		<!-- <trim prefix="where" prefixOverrides="and|or" suffixOverrides="">
+			<if test="truename!=null">
+				 truename like concat('%',#{truename},'%')
+			</if>
+
+		</trim> -->
+	</select>
+
+
+
+
+<!-- =============================================================================================== -->
+
+
+	<select id="select" resultType="user" parameterType="user">
+		select * from user
+		<where>
+			<choose>
+				<when test="id!=0">
+					id=#{id}
+				</when>
+				<when test="truename!=null">
+					and truename=#{truename}
+				</when>
+				<when test="username!=null">
+					and username=#{username}
+				</when>
+				<when test="password!=null">
+					and password=#{password}
+				</when>
+				<when test="money!=0">
+					and money=#{money}
+				</when>
+
+				<otherwise>
+					age=#{age}
+				</otherwise>
+			</choose>
+		</where>
+	</select>
+
+
+
+	<select id="selectLike" resultType="user" parameterType="String">
+		select * from user
+		<trim prefix="where" prefixOverrides="and|or" suffixOverrides="">
+			<if test="id!=0">
+				id like concat('%',#{id},'%')
+			</if>
+			<if test="truename!=null">
+				and truename like concat('%',#{truename},'%')
+			</if>
+			<if test="username!=null">
+				and username like concat('%',#{username},'%')
+			</if>
+			<if test="password!=null">
+				and password like concat('%',#{password},'%')
+			</if>
+			<if test="money!=0">
+				and money like concat('%',#{money},'%')
+			</if>
+			<if test="age!=0">
+				and age like concat('%',#{age},'%')
+			</if>
+
+		</trim>
+	</select>
+
+	<delete id="deleteAll">
+		delete from user where id in(
+		<foreach collection="array" item="id" index="i" separator=",">
+			#{id}
+		</foreach>
+		)
+	</delete>
+</mapper>

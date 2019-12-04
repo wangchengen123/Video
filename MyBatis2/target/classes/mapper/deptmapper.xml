@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhiyou.mapper.DeptMapper">
+	<cache eviction="FIFO" size="1024" flushInterval="3600"/>
+	<insert id="add" parameterType="Dept" keyColumn="deptno" keyProperty="keyProperty" useGeneratedKeys="true" >
+		insert into dept values(null,#{dname},#{loc})
+	</insert>
+	
+	<delete id="delete">
+		delete from dept where deptno=#{123}
+	</delete>
+	
+	<resultMap type="dept" id="deptMap">
+		<id column="deptno" property="deptno"/>
+		<result column="dname" property="dname"/>
+		<result column="loc" property="loc"/>
+		<!-- 
+			collection:映射一个集合对象
+				property:集合对象的属性名
+				foType:集合中存放的数据类型
+		 -->
+		<collection property="emps" ofType="com.zhiyou.model.Emp">
+			<id column="empno" property="empno"/>
+			<result column="ename" property="ename"/>
+			<result column="job" property="job"/>
+			<result column="mgr" property="mgr"/>
+			<result column="hiredate" property="hiredate"/>
+			<result column="sal" property="sal"/>
+			<result column="comm" property="comm"/>
+			<result column="deptno" property="deptno"/>
+		</collection>
+	</resultMap>
+	
+	<!-- <select id="selectById" resultType="dept">
+		select * from dept where deptno=#{123}
+	</select> -->
+	
+	<select id="selectById" resultMap="deptMap">
+		select *from dept d,emp e where d.deptno=e.deptno and d.deptno={123}
+	</select>
+	
+	<select id="selectByNameAndByLoc" resultType="dept">
+		<!-- select * from dept where dname=#{0} and loc=#{1} -->
+		select # from dept where dname=${dname} and loc=${locc}
+	</select>
+	
+	<select id="selectAllOrderBy" resultType="dept">
+		select * from emp ORDER BY ${n}
+	</select>
+	
+	
+</mapper> 

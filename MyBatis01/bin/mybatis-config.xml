@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 
+		MyBatis的全局配置文件中的各个节点要按照顺序写
+	-->
+	 
+	<!-- 加载jdbc.properties 文件 -->
+	<properties resource="jdbc.properties"></properties>
+	
+	<!-- 设置别名
+		<package name=""> 该包下的所有都会有别名
+		别名就是该类的类名
+	 -->
+	<typeAliases>
+		<package name="com.zhiyou.model"/>
+	</typeAliases>	 
+	 
+	<!-- 数据库环境 -->
+	<environments default="development">
+		<environment id="development">
+			<!-- 事务管理器 -->
+			<transactionManager type="JDBC" />
+			<!-- 使用连接池 -->
+			<dataSource type="POOLED">
+				<!-- 数据库配置 -->
+				<property name="driver" value="${jdbc.driver}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.username}" />
+				<property name="password" value="${jdbc.password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	<!-- 加载映射文件 -->
+	<mappers>
+		<!-- 
+			1.接口文件和映射文件同名
+			2.接口文件要和映射文件在同一包下
+		 -->
+		<package name="com.zhiyou.mapper"/>
+	</mappers>
+</configuration>

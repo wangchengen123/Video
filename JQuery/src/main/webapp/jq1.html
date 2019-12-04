@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<input type="text" id="i1" value="jq1">
+
+</body>
+<!-- 引入jQuery的类库 -->
+<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+<script type="text/javascript">
+	/* 1:使用原生的js获取input的值*/
+	var i1 = document.getElementById("i1");
+	var i1val = i1.value;// value是输入框的属性,不需要()
+//	alert(i1val);
+
+</script>
+<script type="text/javascript" >
+	// 使用jQuery获取value的值
+	/*
+	  $  是jQuery的核心符号
+	  $  相当于document.getElement
+	  $("#xx")  相当于document.getElementById("xx")
+	  $(".yy")  通过标签的class获取
+	  $("zz")   相当于document.getElementByName("zz")
+	*/
+	var i1 = $("#i1");// 得到jQuery对象
+	var i1val = i1.val();//jQuery函数,获取值 /  获得第一个元素的当前值
+	alert(i1val);
+	
+	i1.val("默认值");  //重新设置值
+</script>
+</html>

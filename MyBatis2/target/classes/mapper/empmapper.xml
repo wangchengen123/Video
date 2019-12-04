@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- namespace:代表这个文件的命名空间,根据这个名称可以定位到这个文件 -->
+<mapper namespace="com.zhiyou.mapper.EmpMapper">
+	<insert id="add" parameterType="Emp"  >
+		insert into emp values(null,#{ename},#{job},#{mgr},#{hiredate},#{sal},#{comm},#{dept.deptno})
+	</insert>
+	
+	<delete id="delete">
+		delete from emp where deptno=#{123}
+	</delete>
+	
+	<resultMap type="emp" id="empMap">
+		<id column="empno" property="empno"/>
+		<result column="ename" property="ename"/>
+		<result column="job" property="job"/>
+		<result column="mgr" property="mgr"/>
+		<result column="hiredate" property="hiredate"/>
+		<result column="sal" property="sal"/>
+		<result column="comm" property="comm"/>
+		<result column="deptno" property="deptno"/>
+		
+		<!-- 
+			association:用来匹配单个对象
+				property: java modle中对象的属性名
+				column: 执行的SQL中哪个列的值作为后面SQL的参数
+				select: 指定调用哪句SQL语句来查询出相关联的对象
+		 -->
+		
+		<association property="dept" column="deptno" select="com.zhiyou.mapper.DeptMapper.selectByID"/>
+	</resultMap>
+	<select id="selectByID" resultMap="empMap">
+		select * from  emp where empno=#{123}
+	</select>
+	
+		<resultMap type="emp" id="empMap2">
+		<id column="EMPNO" property="empno"/>
+		<result column="ENAME" property="ename"/>
+		<result column="JOB" property="job"/>
+		<result column="MGR" property="mgr"/>
+		<result column="HIREDATE" property="hiredate"/>
+		<result column="SAL" property="sal"/>
+		<result column="COMM" property="comm"/>
+		<result column="DEPTNO" property="deptno"/>
+		<!-- 
+			association:用来匹配单个对象
+				property: java Moldel中对象的属性名
+				javaType: 属性名对应的类型
+		 -->
+		<association property="dept" javaType="com.zhiyou.model.Dept">
+			<id column="deptno" property="deptno"/>
+			<result column="dname" property="dname"/>
+			<result column="loc" property="loc"/>
+		</association>
+		</resultMap>
+	
+	<select id="selectAll" resultMap="empMap2">
+		<!-- select * from emp -->
+		select * from emp e,dept d where e.deptno=d.deptno limit 0,2
+	</select>
+	
+</mapper> 

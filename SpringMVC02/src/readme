@@ -1,0 +1,36 @@
+拦截 Interceptor
+过滤器与拦截器的区别:
+  1:过滤器默认会拦截所有(jsp/.html等)而拦截器如果配置成/**的话,会拦截html
+  2:过滤器只有在执行servlet之前进行调用,拦截器能够深入到方法前后所以弹性较大
+  3:过滤器是基于函数回调实现,拦截器是基于反射实现
+  4:过滤器无法访问controller值栈中的值,而拦截器可以
+  5:过滤器在一次请求中只执行一次,而拦截器执行了多次
+  6:过滤器需要在servlet容器中进行实现,而拦截器则不依赖于servlet容器
+
+SpringMVC的请求流程(必须得会 面试必问)
+   1:用户发送请求到tomcat
+   2:tomcat将符合DispatcherServlet路径的请求转发给DispatcherServlet(前端控制器)
+     进行处理
+   3:前端控制器去请求HandlerMapping查找Handler(根据xml配置以及注解去进行查找操作)
+   4:处理器映射器(HandlerMapping)会将请求映射为HandlerExecutionChain对象
+   (包含有Handler以及多个Interceptor对象)返回给前端控制器.
+   5:前端控制器调用处理器适配器(HandlerAdapter)来执行Handler
+   6:Handler执行完成后返回给HandlerAdapter 一个ModelAndView
+   7:HandlerAdapter将ModelAndview返回给前端控制器
+   8:前端控制器 请求视图解析器进行视图解析(将逻辑视图转成真实视图)
+   9:视图解析器返回view给前端控制器
+   10:前端控制器对视图进行渲染(将返回给前端的数据放到页面的request作用域中)
+   11:前端控制器向用户响应
+
+   
+文件上传
+如果服务器想接受客户端上传的文件必须要知道:
+   1:文件的类型
+   2:文件的大小
+   3:文件的名称
+而由于以上三点javafile都无法描述一个文件上传的信息,所以我们选择MultipartFile作为
+我们文件上传的参数
+由于上传需要制定表单提交方式为post,并且制定enctype="multipart/from-data"
+   
+   
+   

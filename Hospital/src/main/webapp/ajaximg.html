@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- 
+	通过new Form
+ -->
+<form action="#" id="formId">
+	<input type="file" name="file"><br>
+	<input type="button" value="上传" onclick="doUpload()">
+</form>
+<div >
+	<img alt="" width="500px" height="500px" src="">
+</div>
+</body>
+<script type="text/javascript" src="Js/jquery.js"></script>
+<script type="text/javascript">
+	function doUpload() {
+		// 创建form表单对象
+		var formData = new FormData($("#formId")[0]);
+		// ajax 发送请求,返回图片地址,赋值给img标签
+		$.ajax({
+			url:"/HIS/uploadFastDFS.do",
+			type:"POST",
+			data:formData,
+			async:false,
+			contentType:false,
+			processData:false,
+			success:function(data){
+				alert(data);
+				$("#i1").attr("src",data.obj);
+			}
+			
+		});
+		
+		
+	}
+	
+	
+</script>
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop" 
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+		
+		
+	<!-- 1.目标类被Spring托管 -->  
+	<bean id="UserServiceImpl" class="com.zhiyou.springAOP.UserServiceImpl"></bean>
+	<!-- 2.切面类被Spring托管 -->
+	<bean id="MyAspect" class="com.zhiyou.springAOP.MyAspect"></bean>
+	<!-- 3.织入:将通知切入到目标类的目标方法上 -->
+    <aop:config>
+    	<!-- 切入点表达式 pointcut expression
+    		切入点表达式,是确定切面类中的增强方法到底作用于目标类的哪一个方法
+    		'execution(* com.xyz.myapp.service.*.*(..))'
+    		execution: 关键字
+    		() : 括号中写表达式
+    		* :第一个* 代表的是返回值,任意类型
+    		com.xyz.myapp.service: 包名
+    		* :第二个* 代表的是 前面包下的类名,* 是任意类
+    		* :第三个* 代表的是 前面类中的方法名,* 任意方法
+    		(..) :方法的参数, .. 是指任意参数
+    		
+    	 -->
+    	 <!-- id:该标签的唯一标识 -->
+    	<aop:pointcut expression=" 'execution(* com.zhiyou.springAOP.UserServiceImpl.*.*(..))'" id="myPointCut"/>
+    	
+    	<!-- 将通知作用于指定的切入点 -->
+    	<aop:advisor advice-ref="MyAspect" pointcut-ref="myPointCut"/>
+    	
+    </aop:config>    
+</beans>
+	

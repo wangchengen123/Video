@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<input type="text" id="i1" value="jq4">
+<div id="d1">
+	<p>hhh</p>
+</div>
+
+
+</body>
+<!-- 引入jQuery的类库 -->
+<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+<script type="text/javascript">
+	// html()  获得选中的元素开闭标签之间的html代码,含有标签
+	// alert($("#i1").html());
+	
+	// html("<a href='#'>点我</a>") 
+	// 设置html代码  如果有标签,将进行解析,如果原来有内容,会被覆盖
+	$("#d1").html("aa");
+	$("#d1").append("hha");  // 是在标签内部的后面追加
+	//===================================
+	// text()  只获得文本值,将标签进行过滤
+	alert($("#d1")).text();
+	// text("标签内容") 设置文本值,如果有标签,将被转义
+	
+	
+	
+</script>
+</html>

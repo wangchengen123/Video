@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+        
+     <!-- 
+		要将创建对象的权利交给Spring容器
+		Spring容器就是applicationContext.xml文件
+		一个bean标签,就相当于是创建对象
+	 -->  
+	 <!-- 创建UserServicceImpl的对象
+	 	id:用于获取创建后的对象
+	 	class:需要创建的对象的类路径
+	  -->
+	 <bean id="userServiceImpl" class="com.zhiyou.service.UserServiceImpl"
+	 		init-method="myInit"
+	 		destroy-method="myDestroy"
+	 ></bean>
+        
+        
+</beans>
+	

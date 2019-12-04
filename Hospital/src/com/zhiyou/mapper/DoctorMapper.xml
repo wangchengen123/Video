@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhiyou.mapper.DoctorMapper">
+  <resultMap id="BaseResultMap" type="com.zhiyou.model.Doctor">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="certificate_type" jdbcType="INTEGER" property="certificateType" />
+    <result column="ID_num" jdbcType="VARCHAR" property="idNum" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="special_plane" jdbcType="VARCHAR" property="specialPlane" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="birther" jdbcType="VARCHAR" property="birther" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="section_id" jdbcType="INTEGER" property="sectionId" />
+    <result column="education" jdbcType="INTEGER" property="education" />
+    <result column="noted" jdbcType="VARCHAR" property="noted" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, certificate_type, ID_num, phone, special_plane, sex, age, birther, email, 
+    section_id, education, noted, time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from doctor
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from doctor
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zhiyou.model.Doctor">
+    insert into doctor (id, name, certificate_type, 
+      ID_num, phone, special_plane, 
+      sex, age, birther, 
+      email, section_id, education, 
+      noted, time)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{certificateType,jdbcType=INTEGER}, 
+      #{idNum,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{specialPlane,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=INTEGER}, #{age,jdbcType=INTEGER}, #{birther,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{sectionId,jdbcType=INTEGER}, #{education,jdbcType=INTEGER}, 
+      #{noted,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhiyou.model.Doctor">
+    insert into doctor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="certificateType != null">
+        certificate_type,
+      </if>
+      <if test="idNum != null">
+        ID_num,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="specialPlane != null">
+        special_plane,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="birther != null">
+        birther,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="sectionId != null">
+        section_id,
+      </if>
+      <if test="education != null">
+        education,
+      </if>
+      <if test="noted != null">
+        noted,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateType != null">
+        #{certificateType,jdbcType=INTEGER},
+      </if>
+      <if test="idNum != null">
+        #{idNum,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="specialPlane != null">
+        #{specialPlane,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="birther != null">
+        #{birther,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="sectionId != null">
+        #{sectionId,jdbcType=INTEGER},
+      </if>
+      <if test="education != null">
+        #{education,jdbcType=INTEGER},
+      </if>
+      <if test="noted != null">
+        #{noted,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhiyou.model.Doctor">
+    update doctor
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateType != null">
+        certificate_type = #{certificateType,jdbcType=INTEGER},
+      </if>
+      <if test="idNum != null">
+        ID_num = #{idNum,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="specialPlane != null">
+        special_plane = #{specialPlane,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="birther != null">
+        birther = #{birther,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="sectionId != null">
+        section_id = #{sectionId,jdbcType=INTEGER},
+      </if>
+      <if test="education != null">
+        education = #{education,jdbcType=INTEGER},
+      </if>
+      <if test="noted != null">
+        noted = #{noted,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhiyou.model.Doctor">
+    update doctor
+    set name = #{name,jdbcType=VARCHAR},
+      certificate_type = #{certificateType,jdbcType=INTEGER},
+      ID_num = #{idNum,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      special_plane = #{specialPlane,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      age = #{age,jdbcType=INTEGER},
+      birther = #{birther,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      section_id = #{sectionId,jdbcType=INTEGER},
+      education = #{education,jdbcType=INTEGER},
+      noted = #{noted,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.zhiyou.model.Doctor">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="certificate_type" jdbcType="INTEGER" property="certificateType" />
+    <result column="ID_num" jdbcType="VARCHAR" property="idNum" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="special_plane" jdbcType="VARCHAR" property="specialPlane" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="birther" jdbcType="VARCHAR" property="birther" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="section_id" jdbcType="INTEGER" property="sectionId" />
+    <result column="education" jdbcType="INTEGER" property="education" />
+    <result column="noted" jdbcType="VARCHAR" property="noted" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, certificate_type, ID_num, phone, special_plane, sex, age, birther, email, 
+    section_id, education, noted, time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from doctor
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from doctor
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zhiyou.model.Doctor">
+    insert into doctor (id, name, certificate_type, 
+      ID_num, phone, special_plane, 
+      sex, age, birther, 
+      email, section_id, education, 
+      noted, time)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{certificateType,jdbcType=INTEGER}, 
+      #{idNum,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{specialPlane,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=INTEGER}, #{age,jdbcType=INTEGER}, #{birther,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{sectionId,jdbcType=INTEGER}, #{education,jdbcType=INTEGER}, 
+      #{noted,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhiyou.model.Doctor">
+    insert into doctor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="certificateType != null">
+        certificate_type,
+      </if>
+      <if test="idNum != null">
+        ID_num,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="specialPlane != null">
+        special_plane,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="birther != null">
+        birther,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="sectionId != null">
+        section_id,
+      </if>
+      <if test="education != null">
+        education,
+      </if>
+      <if test="noted != null">
+        noted,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateType != null">
+        #{certificateType,jdbcType=INTEGER},
+      </if>
+      <if test="idNum != null">
+        #{idNum,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="specialPlane != null">
+        #{specialPlane,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="birther != null">
+        #{birther,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="sectionId != null">
+        #{sectionId,jdbcType=INTEGER},
+      </if>
+      <if test="education != null">
+        #{education,jdbcType=INTEGER},
+      </if>
+      <if test="noted != null">
+        #{noted,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhiyou.model.Doctor">
+    update doctor
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateType != null">
+        certificate_type = #{certificateType,jdbcType=INTEGER},
+      </if>
+      <if test="idNum != null">
+        ID_num = #{idNum,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="specialPlane != null">
+        special_plane = #{specialPlane,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="birther != null">
+        birther = #{birther,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="sectionId != null">
+        section_id = #{sectionId,jdbcType=INTEGER},
+      </if>
+      <if test="education != null">
+        education = #{education,jdbcType=INTEGER},
+      </if>
+      <if test="noted != null">
+        noted = #{noted,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhiyou.model.Doctor">
+    update doctor
+    set name = #{name,jdbcType=VARCHAR},
+      certificate_type = #{certificateType,jdbcType=INTEGER},
+      ID_num = #{idNum,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      special_plane = #{specialPlane,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      age = #{age,jdbcType=INTEGER},
+      birther = #{birther,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      section_id = #{sectionId,jdbcType=INTEGER},
+      education = #{education,jdbcType=INTEGER},
+      noted = #{noted,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.zhiyou.model.Doctor">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="certificate_type" jdbcType="INTEGER" property="certificateType" />
+    <result column="ID_num" jdbcType="VARCHAR" property="idNum" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="special_plane" jdbcType="VARCHAR" property="specialPlane" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="birther" jdbcType="VARCHAR" property="birther" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="section_id" jdbcType="INTEGER" property="sectionId" />
+    <result column="education" jdbcType="INTEGER" property="education" />
+    <result column="noted" jdbcType="VARCHAR" property="noted" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, certificate_type, ID_num, phone, special_plane, sex, age, birther, email, 
+    section_id, education, noted, time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from doctor
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from doctor
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zhiyou.model.Doctor">
+    insert into doctor (id, name, certificate_type, 
+      ID_num, phone, special_plane, 
+      sex, age, birther, 
+      email, section_id, education, 
+      noted, time)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{certificateType,jdbcType=INTEGER}, 
+      #{idNum,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{specialPlane,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=INTEGER}, #{age,jdbcType=INTEGER}, #{birther,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{sectionId,jdbcType=INTEGER}, #{education,jdbcType=INTEGER}, 
+      #{noted,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhiyou.model.Doctor">
+    insert into doctor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="certificateType != null">
+        certificate_type,
+      </if>
+      <if test="idNum != null">
+        ID_num,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="specialPlane != null">
+        special_plane,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="birther != null">
+        birther,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="sectionId != null">
+        section_id,
+      </if>
+      <if test="education != null">
+        education,
+      </if>
+      <if test="noted != null">
+        noted,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateType != null">
+        #{certificateType,jdbcType=INTEGER},
+      </if>
+      <if test="idNum != null">
+        #{idNum,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="specialPlane != null">
+        #{specialPlane,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="birther != null">
+        #{birther,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="sectionId != null">
+        #{sectionId,jdbcType=INTEGER},
+      </if>
+      <if test="education != null">
+        #{education,jdbcType=INTEGER},
+      </if>
+      <if test="noted != null">
+        #{noted,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhiyou.model.Doctor">
+    update doctor
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateType != null">
+        certificate_type = #{certificateType,jdbcType=INTEGER},
+      </if>
+      <if test="idNum != null">
+        ID_num = #{idNum,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="specialPlane != null">
+        special_plane = #{specialPlane,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="birther != null">
+        birther = #{birther,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="sectionId != null">
+        section_id = #{sectionId,jdbcType=INTEGER},
+      </if>
+      <if test="education != null">
+        education = #{education,jdbcType=INTEGER},
+      </if>
+      <if test="noted != null">
+        noted = #{noted,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhiyou.model.Doctor">
+    update doctor
+    set name = #{name,jdbcType=VARCHAR},
+      certificate_type = #{certificateType,jdbcType=INTEGER},
+      ID_num = #{idNum,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      special_plane = #{specialPlane,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      age = #{age,jdbcType=INTEGER},
+      birther = #{birther,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      section_id = #{sectionId,jdbcType=INTEGER},
+      education = #{education,jdbcType=INTEGER},
+      noted = #{noted,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

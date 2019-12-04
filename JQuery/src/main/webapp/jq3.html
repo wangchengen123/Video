@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	.c1{
+		height: 100px;
+		width: 100px;
+		color:red;
+	}
+</style>
+
+</head>
+<body>
+
+<input type="text" id="i1" value="jq3" class="c1">
+<input id="i2" >
+
+</body>
+<!-- 引入jQuery的类库 -->
+<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+<script type="text/javascript">
+	// attr(name)  获得指定属性名的值
+	//alert("input的type属性值:" +$("#i1").attr("type"));
+	
+	// atter(key,val) 给一个指定属性名设置值
+	$("#i1").attr("class","c1");
+	
+	// attr(prop) 给多个属性名设置值.参数prop  json数据{k : v,k : v,....}
+	$("#i2").attr({type:"password",class:"c1"});
+	// removeAttr(name)  移除指定属性
+	$("#i1").removeAttr("class");
+	
+</script>
+</html>

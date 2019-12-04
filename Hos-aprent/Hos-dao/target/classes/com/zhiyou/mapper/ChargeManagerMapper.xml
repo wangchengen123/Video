@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhiyou.mapper.ChargeManagerMapper" >
+  <resultMap id="BaseResultMap" type="com.zhiyou.model.ChargeManager" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="medical_record" property="medicalRecord" jdbcType="VARCHAR" />
+    <result column="pay_items_id" property="payItemsId" jdbcType="INTEGER" />
+    <result column="charge_money" property="chargeMoney" jdbcType="DOUBLE" />
+    <result column="charge_time" property="chargeTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, medical_record, pay_items_id, charge_money, charge_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from charge_manager
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from charge_manager
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zhiyou.model.ChargeManager" >
+    insert into charge_manager (id, medical_record, pay_items_id, 
+      charge_money, charge_time)
+    values (#{id,jdbcType=INTEGER}, #{medicalRecord,jdbcType=VARCHAR}, #{payItemsId,jdbcType=INTEGER}, 
+      #{chargeMoney,jdbcType=DOUBLE}, #{chargeTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhiyou.model.ChargeManager" >
+    insert into charge_manager
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="medicalRecord != null" >
+        medical_record,
+      </if>
+      <if test="payItemsId != null" >
+        pay_items_id,
+      </if>
+      <if test="chargeMoney != null" >
+        charge_money,
+      </if>
+      <if test="chargeTime != null" >
+        charge_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="medicalRecord != null" >
+        #{medicalRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="payItemsId != null" >
+        #{payItemsId,jdbcType=INTEGER},
+      </if>
+      <if test="chargeMoney != null" >
+        #{chargeMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="chargeTime != null" >
+        #{chargeTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhiyou.model.ChargeManager" >
+    update charge_manager
+    <set >
+      <if test="medicalRecord != null" >
+        medical_record = #{medicalRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="payItemsId != null" >
+        pay_items_id = #{payItemsId,jdbcType=INTEGER},
+      </if>
+      <if test="chargeMoney != null" >
+        charge_money = #{chargeMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="chargeTime != null" >
+        charge_time = #{chargeTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhiyou.model.ChargeManager" >
+    update charge_manager
+    set medical_record = #{medicalRecord,jdbcType=VARCHAR},
+      pay_items_id = #{payItemsId,jdbcType=INTEGER},
+      charge_money = #{chargeMoney,jdbcType=DOUBLE},
+      charge_time = #{chargeTime,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+<!-- 引入jQuery的类库 -->
+<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+<script type="text/javascript">
+	//{"":"","":""}
+	var jsonStr = '{"id":"1"}'; // json字符串
+	var jsonObj = {"id":"1"};  // json对象
+	var jsonObj2 = {"id":"1","name":"张三","age":13};
+	//json数组
+	var jsonArr = {"clazz":
+		[{"java":"201"},{"html":"203"},{"ui":"205"}]	
+	};
+	
+	
+	
+	
+	// 获取json对象的值
+//	alert(jsonObj.id);
+//	alert(jsonObj2.name);
+	alert(jsonArr.clazz);
+//	alert(jsonArr.clazz[0].java);// 得到java的值
+	for(var i = 0;i<jsonArr.clazz.length;i++){
+		alert(jsonArr.clazz[i]);
+	}
+	
+</script>
+</html>

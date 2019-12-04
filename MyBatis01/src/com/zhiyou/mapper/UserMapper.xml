@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ 
+ <!-- 
+ 	namespace:类路径
+ 		与此映射文件有关联的接口文件路径
+ 	
+ 	 -->
+<mapper namespace="com.zhiyou.mapper.UserMapper">
+	<!-- select标签:该标签内的语句执行查询
+		id: namespace指定的接口中的方法名
+		resultType:结果类型
+					接口方法中的返回值类型:如果返回的是集合的话,指的是集合中存储的数据类型
+		===> 指的是查询结果需要封装到哪个类中
+			成功封装的前提是:
+				返回的虚拟表字段与实体类中的属性一致
+	 -->
+	<select id="findAllUser" resultType="com.zhiyou.model.User">
+		select * from users 
+	</select>
+	
+	
+	<!-- 根据id查用户 
+		parameterType: 入参类型
+				与接口文件中的参数列表中的数据类型一致
+		#{} : 相当于是preparedStatement 的占位符 ?
+		#{id} : 相当于是给ps的占位符 ? 赋值
+			如果入参类型是基本数据类型或者字符串,那么#{} 内部的值随意
+			如果入参类型是对象,那么#{} 内部的值 是对象的属性名
+	-->
+	<select id="findUserById" parameterType="int" resultType="com.zhiyou.model.User">
+		select * from users where id = #{id}
+	</select>
+	
+	<!-- 根据用户名字查询用户 -->
+	<select id="findUserByName" parameterType="String" resultType="com.zhiyou.model.User">
+		select * from users where name = #{name}
+	</select>
+
+	<!-- 插入用户
+		parameterType: 传入的是对象,需要对象的类路径写完整
+		没有返回值,就不需要指定resultType
+		如果入参类型是对象,那么#{} 内部的值 是对象的属性名
+	 -->
+	<insert id="insertUser" parameterType="com.zhiyou.model.User">
+		insert into users(id,name,password,birthday) values(#{id},#{name},#{password},#{birthday})
+	</insert>
+	
+	<!-- 根据用户名和密码查询
+		如果接口的参数列表多个参数,并且加了注解
+		#{} 中的值,就必须和注解后的值一致  
+	 -->
+	<select id="findUserByNameAndPassword" parameterType="String" resultType="com.zhiyou.model.User">
+		select * from users where name = #{name}
+	</select>
+	
+	<!-- 根据用户名密码查询:Map 
+		parameterType="Map"类型的
+		#{} 中的值要与map中的key一致
+	-->
+	<select id="findUserByNameAndPasswordMap" parameterType="Map" resultType="com.zhiyou.model.User">
+		select * from users where name = #{} and password = #{}
+	</select>
+	
+	<!-- 根据名字模糊查询 
+		#{} 给字符串类型参数赋值,会自动拼接引号
+		${} 传入什么值,取出就什么值
+		${value} 必须是value
+	-->
+	<select id="findUserByKeyword" parameterType="String" resultType="com.zhiyou.model.User">
+		select * from users where name like '%${value}%'
+	</select>
+	
+	<!-- 动态sql
+		根据条件,动态拼接SQL
+	 -->
+	<select id = "findUserByKeywordDynamicSQL" parameterType="String" resultType="com.zhiyou.model.User">
+		select * from users
+		<!-- 如果下面的if判断成功,字段拼接where关键字
+		if:
+			test 是布尔表达式
+				keyword可以是某一个对象属性名
+					或者是map集合的键
+				判断表达式与操作用的是单词 and
+				${},如果是从map取值,写map的键
+				
+			
+		 -->
+		<where>
+			<if test="keyword !=null and keyword !=''">
+				 name like '%${value}%'
+			</if>
+		</where>
+	</select>
+	
+	
+	
+	
+	
+	
+	
+</mapper>

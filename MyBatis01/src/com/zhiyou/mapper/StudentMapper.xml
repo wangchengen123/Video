@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.zhiyou.mapper.StudentMapper">
+ 	
+ 	<resultMap type="Student" id="stuClassResMap">
+ 		<id column="sid" property="sid"/>
+ 		<result column="sname" property="sname"/>
+ 		<result column="age" property="age"/>
+ 		<result column="score" property="score"/>
+ 		<result column="cid" property="cid"/>
+ 		<result column="groupLeaderId" property="groupLeaderId"/>
+ 		<result column="gender" property="gender"/>
+ 		<result column="sbirthday" property="sbirthday"/>
+ 		<!-- 使用一对一映射标签 
+ 			property: 属性,写的是需要关联的映射的属性
+ 			javaType: 需要封装的另外一个类的类型
+ 					         类路径(因为已经指定了别名)
+ 		-->
+ 		<association property="classRoom" javaType="">
+ 			<id column="cid1" property="cid"/>
+ 			<result column="cname" property="cname"/>
+ 			<result column="caddress" property="caddress"/>
+ 		</association>
+ 	</resultMap>
+ 	
+ 	<!-- 一对一关联查询 -->
+ 	<select id="findStudentAndClassById" parameterType="int" resultMap="stuClassResMapper">
+ 		select * from stu s,class c where s.cid = c.cid and s.sid = #{id}
+ 	</select>
+ 
+ 
+ </mapper>

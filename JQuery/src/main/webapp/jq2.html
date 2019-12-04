@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<input type="text" class="c1" id="i1" value="jq2">
+<input type="text" class="c1" id="i2" value="jq22" placeholder="">
+<input type="text" class="c1"  value="jq23">
+<div id="d1" style=""></div>
+
+</body>
+<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+<script type="text/javascript">
+	// 选择器[属性名]   获得指定的属性名的元素
+	// alert($(".c1[placeholder]").val());
+	
+	// 选择器[属性名=值] 获得属性名  等于  指定值的  的元素
+	// alert($(".c1[id=i1]").val());
+	
+	// 选择器[属性名!=值] 获得属性名 不等于 指定值的 的元素,没有直观属性也会 选中
+	var inArr3 = $(".c1[id != i1]");
+	for(var i=0;i<inArr3.length;i++){
+		alert(inArr3[i].value);
+	}
+</script>
+
+
+<script type="text/javascript">
+	// 通过标签名获取元素
+	// alert($("input").val());
+	var inArr = $("input");
+	for(var i=0;i<inArr.length;i++){
+		// 遍历得到的是原生js对象,所以需要使用.value获取值
+		// alert(inArr[i].value);
+	}
+//====================================
+	// 通过class样式获得对象
+	// alert($(".c1").val());
+	var inArr2 =  $(".c1");
+	for(var i=0;i<inArr2.length;i++){
+	//	 alert(inArr2[i].value);
+	}
+	
+	
+</script>
+</html>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhiyou.mapper.HospitalInforMapper">
+  <resultMap id="BaseResultMap" type="com.zhiyou.model.HospitalInfor">
+    <result column="medical_record" jdbcType="VARCHAR" property="medicalRecord" />
+    <result column="caregiver" jdbcType="VARCHAR" property="caregiver" />
+    <result column="bed_id" jdbcType="VARCHAR" property="bedId" />
+    <result column="pay_the_deposit" jdbcType="DOUBLE" property="payTheDeposit" />
+    <result column="state_illness" jdbcType="VARCHAR" property="stateIllness" />
+  </resultMap>
+  <insert id="insert" parameterType="com.zhiyou.model.HospitalInfor">
+    insert into hospital_infor (medical_record, caregiver, bed_id, 
+      pay_the_deposit, state_illness)
+    values (#{medicalRecord,jdbcType=VARCHAR}, #{caregiver,jdbcType=VARCHAR}, #{bedId,jdbcType=VARCHAR}, 
+      #{payTheDeposit,jdbcType=DOUBLE}, #{stateIllness,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhiyou.model.HospitalInfor">
+    insert into hospital_infor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="medicalRecord != null">
+        medical_record,
+      </if>
+      <if test="caregiver != null">
+        caregiver,
+      </if>
+      <if test="bedId != null">
+        bed_id,
+      </if>
+      <if test="payTheDeposit != null">
+        pay_the_deposit,
+      </if>
+      <if test="stateIllness != null">
+        state_illness,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="medicalRecord != null">
+        #{medicalRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="caregiver != null">
+        #{caregiver,jdbcType=VARCHAR},
+      </if>
+      <if test="bedId != null">
+        #{bedId,jdbcType=VARCHAR},
+      </if>
+      <if test="payTheDeposit != null">
+        #{payTheDeposit,jdbcType=DOUBLE},
+      </if>
+      <if test="stateIllness != null">
+        #{stateIllness,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.zhiyou.model.HospitalInfor">
+    <result column="medical_record" jdbcType="VARCHAR" property="medicalRecord" />
+    <result column="caregiver" jdbcType="VARCHAR" property="caregiver" />
+    <result column="bed_id" jdbcType="VARCHAR" property="bedId" />
+    <result column="pay_the_deposit" jdbcType="DOUBLE" property="payTheDeposit" />
+    <result column="state_illness" jdbcType="VARCHAR" property="stateIllness" />
+  </resultMap>
+  <insert id="insert" parameterType="com.zhiyou.model.HospitalInfor">
+    insert into hospital_infor (medical_record, caregiver, bed_id, 
+      pay_the_deposit, state_illness)
+    values (#{medicalRecord,jdbcType=VARCHAR}, #{caregiver,jdbcType=VARCHAR}, #{bedId,jdbcType=VARCHAR}, 
+      #{payTheDeposit,jdbcType=DOUBLE}, #{stateIllness,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhiyou.model.HospitalInfor">
+    insert into hospital_infor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="medicalRecord != null">
+        medical_record,
+      </if>
+      <if test="caregiver != null">
+        caregiver,
+      </if>
+      <if test="bedId != null">
+        bed_id,
+      </if>
+      <if test="payTheDeposit != null">
+        pay_the_deposit,
+      </if>
+      <if test="stateIllness != null">
+        state_illness,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="medicalRecord != null">
+        #{medicalRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="caregiver != null">
+        #{caregiver,jdbcType=VARCHAR},
+      </if>
+      <if test="bedId != null">
+        #{bedId,jdbcType=VARCHAR},
+      </if>
+      <if test="payTheDeposit != null">
+        #{payTheDeposit,jdbcType=DOUBLE},
+      </if>
+      <if test="stateIllness != null">
+        #{stateIllness,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.zhiyou.model.HospitalInfor">
+    <result column="medical_record" jdbcType="VARCHAR" property="medicalRecord" />
+    <result column="caregiver" jdbcType="VARCHAR" property="caregiver" />
+    <result column="bed_id" jdbcType="VARCHAR" property="bedId" />
+    <result column="pay_the_deposit" jdbcType="DOUBLE" property="payTheDeposit" />
+    <result column="state_illness" jdbcType="VARCHAR" property="stateIllness" />
+  </resultMap>
+  <insert id="insert" parameterType="com.zhiyou.model.HospitalInfor">
+    insert into hospital_infor (medical_record, caregiver, bed_id, 
+      pay_the_deposit, state_illness)
+    values (#{medicalRecord,jdbcType=VARCHAR}, #{caregiver,jdbcType=VARCHAR}, #{bedId,jdbcType=VARCHAR}, 
+      #{payTheDeposit,jdbcType=DOUBLE}, #{stateIllness,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhiyou.model.HospitalInfor">
+    insert into hospital_infor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="medicalRecord != null">
+        medical_record,
+      </if>
+      <if test="caregiver != null">
+        caregiver,
+      </if>
+      <if test="bedId != null">
+        bed_id,
+      </if>
+      <if test="payTheDeposit != null">
+        pay_the_deposit,
+      </if>
+      <if test="stateIllness != null">
+        state_illness,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="medicalRecord != null">
+        #{medicalRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="caregiver != null">
+        #{caregiver,jdbcType=VARCHAR},
+      </if>
+      <if test="bedId != null">
+        #{bedId,jdbcType=VARCHAR},
+      </if>
+      <if test="payTheDeposit != null">
+        #{payTheDeposit,jdbcType=DOUBLE},
+      </if>
+      <if test="stateIllness != null">
+        #{stateIllness,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

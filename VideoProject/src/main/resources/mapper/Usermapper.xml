@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- namespace 代表在各个文件的命名空间 根据这个名称可以定位到这个文件 -->
+  <mapper namespace="com.zhiyou.mapper.UserMapper">
+  <resultMap type="User" id="userMap">
+     <id column="id" property="id"/>
+     <result column="age" property="age"/>
+	 <result column="name" property="name"/>	
+	 <result column="sex" property="sex"/>
+	 <result column="username" property="username"/>
+	 <result column="password" property="password"/>		
+  </resultMap>
+  <!-- insert 表示插入语句
+       id 根据id中的值,能找到这个标签,然后执行里面的sql
+       parameterType : 表示调用sql的时候需要传递的参数类型,
+                                                      如果传入的是一个model类,那么在sql中使用#{属性名}来取出对象的值
+                                                      如果只有一个参数,宁且是基本数据类型的参数可以省略不写
+       resultType : 代表sql返回的结果集类型,可以指定model类,如果返回的是多条记录
+                                                会自动转换成对应model类型的list集合.需要 : 列名与model属性一致
+       resultMap : 当model属性名与数据库列明不匹配的时候可以定义resultMap
+                                                  在其中指定数据库列名所对应的model属性
+       -->
+    
+    
+    
+    <!-- 这是批量删除的方法 -->
+    <delete id="deleteAll">
+		delete from user where id in
+			<foreach open="(" collection="array" item="id" index="i" separator="," close=")">
+				#{id}	
+			</foreach>	
+	</delete>
+    
+    <!-- 这是模糊查询动态sql的方法  -->
+    <select id="selectLike" parameterType="User" resultMap="userMap">
+		<include refid="as" />
+	</select>
+
+	<sql id="as" >
+			select * from user 
+			<trim prefix="where" prefixOverrides="and|or|dsfgdfghdfgdf" suffixOverrides="ekjrhkjerhrt">
+				<if test="id!=0">
+				   	id like concat('%',#{id},'%')
+				</if>
+				<if test="age!=0">
+					 and age like concat('%',#{age},'%')
+				</if>
+				<if test="name!=null">
+					and name like concat('%',#{name},'%')
+				</if>		
+				<if test="sex!=null">
+					and sex like concat('%',#{sex},'%')
+				</if>
+				<if test="username!=null">
+					and username like concat('%',#{username},'%')
+				</if>
+				<if test="password!=null">
+					and password like concat('%',#{password},'%')
+				</if>
+				 ekjrhkjerhrt
+			</trim>		
+	</sql>
+	
+	<!-- 这是查询全部 -->
+	<select id="selectAll"  resultMap="userMap">
+	    select * from user
+	</select>
+	
+	<!-- 这是添加 -->
+	<insert id="add" parameterType="User">
+		insert into user values(#{id},#{accounts},#{phone},#{password},
+		#{nickname},#{sex},#{birthday},#{address},#{imgurl},#{createtime});
+	</insert>
+
+   <!-- 这是删除 -->
+	<delete id="delete">
+		delete from user where id=#{rdgjdfhgdfhg};	
+	</delete>
+	<!-- 这是更新 -->
+	<update id="update" parameterType="User">	
+		 update user 
+		     <set>		
+			    <if test="age!=0">
+					age=#{age},
+				</if> 		
+				<if test="name!=null">
+					name=#{name},
+				</if>			
+				<if test="sex!=null">
+					sex=#{sex},
+				</if>
+				<if test="username!=null">
+					username=#{username},
+				</if>
+				<if test="password!=null">
+					password=#{password}
+				</if>					
+		     </set>
+		where id=#{id}	
+	</update> 
+	
+	
+	
+	<!-- 根据传递的任何参数均能进行查询 -->
+	<select id="select" resultMap="userMap" parameterType="User">
+		select * from user 
+			<where> 
+				<choose>
+					<when test="id!=0">
+						id=#{id} 
+					</when>
+					<when test="age!=0">
+						and age=#{age} 
+					</when>
+					<when test="name!=null">
+						or name=#{name}
+					</when>					
+					<when test="sex!=null">
+						and sex=#{sex} 
+					</when>
+					<when test="username!=null">
+						and username=#{username}
+					</when>
+					<otherwise>
+						and password=#{password}
+					</otherwise>
+				</choose>
+			</where>		
+	</select>
+	
+  </mapper>

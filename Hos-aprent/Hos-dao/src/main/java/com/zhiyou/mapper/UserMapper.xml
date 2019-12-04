@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace:类路径
+		与此映射文件关联的接口文件路径
+ -->
+ <mapper namespace="com.zhiyou.mapper.UserMapper">
+ <resultMap id="roleMap" type="com.zhiyou.model.User">
+ 		<id property="id" column="id"></id>
+            <result property="user_name" column="user_name" ></result>
+            <result property="password" column="password" ></result>
+            <result property="update_time" column="update_time" ></result>
+            <result property="status" column="status" ></result>
+            <result property="real_name" column="real_name" ></result>
+            <result property="email" column="email" ></result>
+ 
+        <association property="roles" javaType="com.zhiyou.model.Role">
+            <id property="id" column="id"></id>
+        	<result property="roleNum" column="role_num"></result>
+        	<result property="roleName" column="role_name"></result>
+       	 	<result property="statuss" column="statuss"></result>
+        </association>
+    </resultMap>
+ 	<select id="findAll" parameterType="map" resultMap="roleMap">
+ 		select 
+		u.* ,
+		r.id as rid,
+		r.role_name,
+		r.role_num, 
+		r.statuss  
+		from role r,user_role ur,user u 
+		where ur.role_id=r.id and ur.user_id=u.id
+		<if test="username != null and username !=''">
+		  and  u.user_name like '%${username}%'
+		</if>
+ 	</select>
+ 	<insert id="addUser" parameterType="User">
+ 		insert into user (user_name,password,real_name,email,status) 
+ 		values (#{user_name},#{password},#{real_name},#{email},#{status})
+ 	</insert>
+ 	<select id="seleUser" parameterType="int" resultType="user">
+ 		select * from user where id=#{id}
+ 	</select>
+ 	<update id="upUser" parameterType="User">
+ 		update user set user_name=#{user_name},password=#{password},birthday=#{birthday} where id=#{id}
+ 	</update>
+ 	<delete id="delUser" parameterType="int">
+ 		delete from user where id=#{id}
+ 	</delete>
+ </mapper>
+

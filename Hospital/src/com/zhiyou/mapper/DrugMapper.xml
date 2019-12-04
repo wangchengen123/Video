@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhiyou.mapper.DrugMapper">
+  <resultMap id="BaseResultMap" type="com.zhiyou.model.Drug">
+    <id column="drug_num" jdbcType="VARCHAR" property="drugNum" />
+    <result column="drug_url" jdbcType="VARCHAR" property="drugUrl" />
+    <result column="purchas_price" jdbcType="DOUBLE" property="purchasPrice" />
+    <result column="sale_price" jdbcType="DOUBLE" property="salePrice" />
+    <result column="drug_name" jdbcType="VARCHAR" property="drugName" />
+    <result column="drug_type" jdbcType="INTEGER" property="drugType" />
+    <result column="simple_detail" jdbcType="VARCHAR" property="simpleDetail" />
+    <result column="prodeced_date" jdbcType="VARCHAR" property="prodecedDate" />
+    <result column="expiration_date" jdbcType="VARCHAR" property="expirationDate" />
+    <result column="quality_date" jdbcType="INTEGER" property="qualityDate" />
+    <result column="detail" jdbcType="VARCHAR" property="detail" />
+    <result column="manufacture" jdbcType="VARCHAR" property="manufacture" />
+    <result column="use_infor" jdbcType="VARCHAR" property="useInfor" />
+    <result column="total_stock" jdbcType="INTEGER" property="totalStock" />
+    <result column="surplus" jdbcType="INTEGER" property="surplus" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="noted" jdbcType="VARCHAR" property="noted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    drug_num, drug_url, purchas_price, sale_price, drug_name, drug_type, simple_detail, 
+    prodeced_date, expiration_date, quality_date, detail, manufacture, use_infor, total_stock, 
+    surplus, status, noted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from drug
+    where drug_num = #{drugNum,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from drug
+    where drug_num = #{drugNum,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zhiyou.model.Drug">
+    insert into drug (drug_num, drug_url, purchas_price, 
+      sale_price, drug_name, drug_type, 
+      simple_detail, prodeced_date, expiration_date, 
+      quality_date, detail, manufacture, 
+      use_infor, total_stock, surplus, 
+      status, noted)
+    values (#{drugNum,jdbcType=VARCHAR}, #{drugUrl,jdbcType=VARCHAR}, #{purchasPrice,jdbcType=DOUBLE}, 
+      #{salePrice,jdbcType=DOUBLE}, #{drugName,jdbcType=VARCHAR}, #{drugType,jdbcType=INTEGER}, 
+      #{simpleDetail,jdbcType=VARCHAR}, #{prodecedDate,jdbcType=VARCHAR}, #{expirationDate,jdbcType=VARCHAR}, 
+      #{qualityDate,jdbcType=INTEGER}, #{detail,jdbcType=VARCHAR}, #{manufacture,jdbcType=VARCHAR}, 
+      #{useInfor,jdbcType=VARCHAR}, #{totalStock,jdbcType=INTEGER}, #{surplus,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{noted,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhiyou.model.Drug">
+    insert into drug
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="drugNum != null">
+        drug_num,
+      </if>
+      <if test="drugUrl != null">
+        drug_url,
+      </if>
+      <if test="purchasPrice != null">
+        purchas_price,
+      </if>
+      <if test="salePrice != null">
+        sale_price,
+      </if>
+      <if test="drugName != null">
+        drug_name,
+      </if>
+      <if test="drugType != null">
+        drug_type,
+      </if>
+      <if test="simpleDetail != null">
+        simple_detail,
+      </if>
+      <if test="prodecedDate != null">
+        prodeced_date,
+      </if>
+      <if test="expirationDate != null">
+        expiration_date,
+      </if>
+      <if test="qualityDate != null">
+        quality_date,
+      </if>
+      <if test="detail != null">
+        detail,
+      </if>
+      <if test="manufacture != null">
+        manufacture,
+      </if>
+      <if test="useInfor != null">
+        use_infor,
+      </if>
+      <if test="totalStock != null">
+        total_stock,
+      </if>
+      <if test="surplus != null">
+        surplus,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="noted != null">
+        noted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="drugNum != null">
+        #{drugNum,jdbcType=VARCHAR},
+      </if>
+      <if test="drugUrl != null">
+        #{drugUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="purchasPrice != null">
+        #{purchasPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="salePrice != null">
+        #{salePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="drugName != null">
+        #{drugName,jdbcType=VARCHAR},
+      </if>
+      <if test="drugType != null">
+        #{drugType,jdbcType=INTEGER},
+      </if>
+      <if test="simpleDetail != null">
+        #{simpleDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="prodecedDate != null">
+        #{prodecedDate,jdbcType=VARCHAR},
+      </if>
+      <if test="expirationDate != null">
+        #{expirationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="qualityDate != null">
+        #{qualityDate,jdbcType=INTEGER},
+      </if>
+      <if test="detail != null">
+        #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacture != null">
+        #{manufacture,jdbcType=VARCHAR},
+      </if>
+      <if test="useInfor != null">
+        #{useInfor,jdbcType=VARCHAR},
+      </if>
+      <if test="totalStock != null">
+        #{totalStock,jdbcType=INTEGER},
+      </if>
+      <if test="surplus != null">
+        #{surplus,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="noted != null">
+        #{noted,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhiyou.model.Drug">
+    update drug
+    <set>
+      <if test="drugUrl != null">
+        drug_url = #{drugUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="purchasPrice != null">
+        purchas_price = #{purchasPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="salePrice != null">
+        sale_price = #{salePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="drugName != null">
+        drug_name = #{drugName,jdbcType=VARCHAR},
+      </if>
+      <if test="drugType != null">
+        drug_type = #{drugType,jdbcType=INTEGER},
+      </if>
+      <if test="simpleDetail != null">
+        simple_detail = #{simpleDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="prodecedDate != null">
+        prodeced_date = #{prodecedDate,jdbcType=VARCHAR},
+      </if>
+      <if test="expirationDate != null">
+        expiration_date = #{expirationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="qualityDate != null">
+        quality_date = #{qualityDate,jdbcType=INTEGER},
+      </if>
+      <if test="detail != null">
+        detail = #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacture != null">
+        manufacture = #{manufacture,jdbcType=VARCHAR},
+      </if>
+      <if test="useInfor != null">
+        use_infor = #{useInfor,jdbcType=VARCHAR},
+      </if>
+      <if test="totalStock != null">
+        total_stock = #{totalStock,jdbcType=INTEGER},
+      </if>
+      <if test="surplus != null">
+        surplus = #{surplus,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="noted != null">
+        noted = #{noted,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where drug_num = #{drugNum,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhiyou.model.Drug">
+    update drug
+    set drug_url = #{drugUrl,jdbcType=VARCHAR},
+      purchas_price = #{purchasPrice,jdbcType=DOUBLE},
+      sale_price = #{salePrice,jdbcType=DOUBLE},
+      drug_name = #{drugName,jdbcType=VARCHAR},
+      drug_type = #{drugType,jdbcType=INTEGER},
+      simple_detail = #{simpleDetail,jdbcType=VARCHAR},
+      prodeced_date = #{prodecedDate,jdbcType=VARCHAR},
+      expiration_date = #{expirationDate,jdbcType=VARCHAR},
+      quality_date = #{qualityDate,jdbcType=INTEGER},
+      detail = #{detail,jdbcType=VARCHAR},
+      manufacture = #{manufacture,jdbcType=VARCHAR},
+      use_infor = #{useInfor,jdbcType=VARCHAR},
+      total_stock = #{totalStock,jdbcType=INTEGER},
+      surplus = #{surplus,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      noted = #{noted,jdbcType=VARCHAR}
+    where drug_num = #{drugNum,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.zhiyou.model.Drug">
+    <id column="drug_num" jdbcType="VARCHAR" property="drugNum" />
+    <result column="drug_url" jdbcType="VARCHAR" property="drugUrl" />
+    <result column="purchas_price" jdbcType="DOUBLE" property="purchasPrice" />
+    <result column="sale_price" jdbcType="DOUBLE" property="salePrice" />
+    <result column="drug_name" jdbcType="VARCHAR" property="drugName" />
+    <result column="drug_type" jdbcType="INTEGER" property="drugType" />
+    <result column="simple_detail" jdbcType="VARCHAR" property="simpleDetail" />
+    <result column="prodeced_date" jdbcType="VARCHAR" property="prodecedDate" />
+    <result column="expiration_date" jdbcType="VARCHAR" property="expirationDate" />
+    <result column="quality_date" jdbcType="INTEGER" property="qualityDate" />
+    <result column="detail" jdbcType="VARCHAR" property="detail" />
+    <result column="manufacture" jdbcType="VARCHAR" property="manufacture" />
+    <result column="use_infor" jdbcType="VARCHAR" property="useInfor" />
+    <result column="total_stock" jdbcType="INTEGER" property="totalStock" />
+    <result column="surplus" jdbcType="INTEGER" property="surplus" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="noted" jdbcType="VARCHAR" property="noted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    drug_num, drug_url, purchas_price, sale_price, drug_name, drug_type, simple_detail, 
+    prodeced_date, expiration_date, quality_date, detail, manufacture, use_infor, total_stock, 
+    surplus, status, noted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from drug
+    where drug_num = #{drugNum,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from drug
+    where drug_num = #{drugNum,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zhiyou.model.Drug">
+    insert into drug (drug_num, drug_url, purchas_price, 
+      sale_price, drug_name, drug_type, 
+      simple_detail, prodeced_date, expiration_date, 
+      quality_date, detail, manufacture, 
+      use_infor, total_stock, surplus, 
+      status, noted)
+    values (#{drugNum,jdbcType=VARCHAR}, #{drugUrl,jdbcType=VARCHAR}, #{purchasPrice,jdbcType=DOUBLE}, 
+      #{salePrice,jdbcType=DOUBLE}, #{drugName,jdbcType=VARCHAR}, #{drugType,jdbcType=INTEGER}, 
+      #{simpleDetail,jdbcType=VARCHAR}, #{prodecedDate,jdbcType=VARCHAR}, #{expirationDate,jdbcType=VARCHAR}, 
+      #{qualityDate,jdbcType=INTEGER}, #{detail,jdbcType=VARCHAR}, #{manufacture,jdbcType=VARCHAR}, 
+      #{useInfor,jdbcType=VARCHAR}, #{totalStock,jdbcType=INTEGER}, #{surplus,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{noted,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhiyou.model.Drug">
+    insert into drug
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="drugNum != null">
+        drug_num,
+      </if>
+      <if test="drugUrl != null">
+        drug_url,
+      </if>
+      <if test="purchasPrice != null">
+        purchas_price,
+      </if>
+      <if test="salePrice != null">
+        sale_price,
+      </if>
+      <if test="drugName != null">
+        drug_name,
+      </if>
+      <if test="drugType != null">
+        drug_type,
+      </if>
+      <if test="simpleDetail != null">
+        simple_detail,
+      </if>
+      <if test="prodecedDate != null">
+        prodeced_date,
+      </if>
+      <if test="expirationDate != null">
+        expiration_date,
+      </if>
+      <if test="qualityDate != null">
+        quality_date,
+      </if>
+      <if test="detail != null">
+        detail,
+      </if>
+      <if test="manufacture != null">
+        manufacture,
+      </if>
+      <if test="useInfor != null">
+        use_infor,
+      </if>
+      <if test="totalStock != null">
+        total_stock,
+      </if>
+      <if test="surplus != null">
+        surplus,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="noted != null">
+        noted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="drugNum != null">
+        #{drugNum,jdbcType=VARCHAR},
+      </if>
+      <if test="drugUrl != null">
+        #{drugUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="purchasPrice != null">
+        #{purchasPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="salePrice != null">
+        #{salePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="drugName != null">
+        #{drugName,jdbcType=VARCHAR},
+      </if>
+      <if test="drugType != null">
+        #{drugType,jdbcType=INTEGER},
+      </if>
+      <if test="simpleDetail != null">
+        #{simpleDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="prodecedDate != null">
+        #{prodecedDate,jdbcType=VARCHAR},
+      </if>
+      <if test="expirationDate != null">
+        #{expirationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="qualityDate != null">
+        #{qualityDate,jdbcType=INTEGER},
+      </if>
+      <if test="detail != null">
+        #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacture != null">
+        #{manufacture,jdbcType=VARCHAR},
+      </if>
+      <if test="useInfor != null">
+        #{useInfor,jdbcType=VARCHAR},
+      </if>
+      <if test="totalStock != null">
+        #{totalStock,jdbcType=INTEGER},
+      </if>
+      <if test="surplus != null">
+        #{surplus,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="noted != null">
+        #{noted,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhiyou.model.Drug">
+    update drug
+    <set>
+      <if test="drugUrl != null">
+        drug_url = #{drugUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="purchasPrice != null">
+        purchas_price = #{purchasPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="salePrice != null">
+        sale_price = #{salePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="drugName != null">
+        drug_name = #{drugName,jdbcType=VARCHAR},
+      </if>
+      <if test="drugType != null">
+        drug_type = #{drugType,jdbcType=INTEGER},
+      </if>
+      <if test="simpleDetail != null">
+        simple_detail = #{simpleDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="prodecedDate != null">
+        prodeced_date = #{prodecedDate,jdbcType=VARCHAR},
+      </if>
+      <if test="expirationDate != null">
+        expiration_date = #{expirationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="qualityDate != null">
+        quality_date = #{qualityDate,jdbcType=INTEGER},
+      </if>
+      <if test="detail != null">
+        detail = #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacture != null">
+        manufacture = #{manufacture,jdbcType=VARCHAR},
+      </if>
+      <if test="useInfor != null">
+        use_infor = #{useInfor,jdbcType=VARCHAR},
+      </if>
+      <if test="totalStock != null">
+        total_stock = #{totalStock,jdbcType=INTEGER},
+      </if>
+      <if test="surplus != null">
+        surplus = #{surplus,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="noted != null">
+        noted = #{noted,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where drug_num = #{drugNum,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhiyou.model.Drug">
+    update drug
+    set drug_url = #{drugUrl,jdbcType=VARCHAR},
+      purchas_price = #{purchasPrice,jdbcType=DOUBLE},
+      sale_price = #{salePrice,jdbcType=DOUBLE},
+      drug_name = #{drugName,jdbcType=VARCHAR},
+      drug_type = #{drugType,jdbcType=INTEGER},
+      simple_detail = #{simpleDetail,jdbcType=VARCHAR},
+      prodeced_date = #{prodecedDate,jdbcType=VARCHAR},
+      expiration_date = #{expirationDate,jdbcType=VARCHAR},
+      quality_date = #{qualityDate,jdbcType=INTEGER},
+      detail = #{detail,jdbcType=VARCHAR},
+      manufacture = #{manufacture,jdbcType=VARCHAR},
+      use_infor = #{useInfor,jdbcType=VARCHAR},
+      total_stock = #{totalStock,jdbcType=INTEGER},
+      surplus = #{surplus,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      noted = #{noted,jdbcType=VARCHAR}
+    where drug_num = #{drugNum,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.zhiyou.model.Drug">
+    <id column="drug_num" jdbcType="VARCHAR" property="drugNum" />
+    <result column="drug_url" jdbcType="VARCHAR" property="drugUrl" />
+    <result column="purchas_price" jdbcType="DOUBLE" property="purchasPrice" />
+    <result column="sale_price" jdbcType="DOUBLE" property="salePrice" />
+    <result column="drug_name" jdbcType="VARCHAR" property="drugName" />
+    <result column="drug_type" jdbcType="INTEGER" property="drugType" />
+    <result column="simple_detail" jdbcType="VARCHAR" property="simpleDetail" />
+    <result column="prodeced_date" jdbcType="VARCHAR" property="prodecedDate" />
+    <result column="expiration_date" jdbcType="VARCHAR" property="expirationDate" />
+    <result column="quality_date" jdbcType="INTEGER" property="qualityDate" />
+    <result column="detail" jdbcType="VARCHAR" property="detail" />
+    <result column="manufacture" jdbcType="VARCHAR" property="manufacture" />
+    <result column="use_infor" jdbcType="VARCHAR" property="useInfor" />
+    <result column="total_stock" jdbcType="INTEGER" property="totalStock" />
+    <result column="surplus" jdbcType="INTEGER" property="surplus" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="noted" jdbcType="VARCHAR" property="noted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    drug_num, drug_url, purchas_price, sale_price, drug_name, drug_type, simple_detail, 
+    prodeced_date, expiration_date, quality_date, detail, manufacture, use_infor, total_stock, 
+    surplus, status, noted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from drug
+    where drug_num = #{drugNum,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from drug
+    where drug_num = #{drugNum,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zhiyou.model.Drug">
+    insert into drug (drug_num, drug_url, purchas_price, 
+      sale_price, drug_name, drug_type, 
+      simple_detail, prodeced_date, expiration_date, 
+      quality_date, detail, manufacture, 
+      use_infor, total_stock, surplus, 
+      status, noted)
+    values (#{drugNum,jdbcType=VARCHAR}, #{drugUrl,jdbcType=VARCHAR}, #{purchasPrice,jdbcType=DOUBLE}, 
+      #{salePrice,jdbcType=DOUBLE}, #{drugName,jdbcType=VARCHAR}, #{drugType,jdbcType=INTEGER}, 
+      #{simpleDetail,jdbcType=VARCHAR}, #{prodecedDate,jdbcType=VARCHAR}, #{expirationDate,jdbcType=VARCHAR}, 
+      #{qualityDate,jdbcType=INTEGER}, #{detail,jdbcType=VARCHAR}, #{manufacture,jdbcType=VARCHAR}, 
+      #{useInfor,jdbcType=VARCHAR}, #{totalStock,jdbcType=INTEGER}, #{surplus,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{noted,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhiyou.model.Drug">
+    insert into drug
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="drugNum != null">
+        drug_num,
+      </if>
+      <if test="drugUrl != null">
+        drug_url,
+      </if>
+      <if test="purchasPrice != null">
+        purchas_price,
+      </if>
+      <if test="salePrice != null">
+        sale_price,
+      </if>
+      <if test="drugName != null">
+        drug_name,
+      </if>
+      <if test="drugType != null">
+        drug_type,
+      </if>
+      <if test="simpleDetail != null">
+        simple_detail,
+      </if>
+      <if test="prodecedDate != null">
+        prodeced_date,
+      </if>
+      <if test="expirationDate != null">
+        expiration_date,
+      </if>
+      <if test="qualityDate != null">
+        quality_date,
+      </if>
+      <if test="detail != null">
+        detail,
+      </if>
+      <if test="manufacture != null">
+        manufacture,
+      </if>
+      <if test="useInfor != null">
+        use_infor,
+      </if>
+      <if test="totalStock != null">
+        total_stock,
+      </if>
+      <if test="surplus != null">
+        surplus,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="noted != null">
+        noted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="drugNum != null">
+        #{drugNum,jdbcType=VARCHAR},
+      </if>
+      <if test="drugUrl != null">
+        #{drugUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="purchasPrice != null">
+        #{purchasPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="salePrice != null">
+        #{salePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="drugName != null">
+        #{drugName,jdbcType=VARCHAR},
+      </if>
+      <if test="drugType != null">
+        #{drugType,jdbcType=INTEGER},
+      </if>
+      <if test="simpleDetail != null">
+        #{simpleDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="prodecedDate != null">
+        #{prodecedDate,jdbcType=VARCHAR},
+      </if>
+      <if test="expirationDate != null">
+        #{expirationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="qualityDate != null">
+        #{qualityDate,jdbcType=INTEGER},
+      </if>
+      <if test="detail != null">
+        #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacture != null">
+        #{manufacture,jdbcType=VARCHAR},
+      </if>
+      <if test="useInfor != null">
+        #{useInfor,jdbcType=VARCHAR},
+      </if>
+      <if test="totalStock != null">
+        #{totalStock,jdbcType=INTEGER},
+      </if>
+      <if test="surplus != null">
+        #{surplus,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="noted != null">
+        #{noted,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhiyou.model.Drug">
+    update drug
+    <set>
+      <if test="drugUrl != null">
+        drug_url = #{drugUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="purchasPrice != null">
+        purchas_price = #{purchasPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="salePrice != null">
+        sale_price = #{salePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="drugName != null">
+        drug_name = #{drugName,jdbcType=VARCHAR},
+      </if>
+      <if test="drugType != null">
+        drug_type = #{drugType,jdbcType=INTEGER},
+      </if>
+      <if test="simpleDetail != null">
+        simple_detail = #{simpleDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="prodecedDate != null">
+        prodeced_date = #{prodecedDate,jdbcType=VARCHAR},
+      </if>
+      <if test="expirationDate != null">
+        expiration_date = #{expirationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="qualityDate != null">
+        quality_date = #{qualityDate,jdbcType=INTEGER},
+      </if>
+      <if test="detail != null">
+        detail = #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacture != null">
+        manufacture = #{manufacture,jdbcType=VARCHAR},
+      </if>
+      <if test="useInfor != null">
+        use_infor = #{useInfor,jdbcType=VARCHAR},
+      </if>
+      <if test="totalStock != null">
+        total_stock = #{totalStock,jdbcType=INTEGER},
+      </if>
+      <if test="surplus != null">
+        surplus = #{surplus,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="noted != null">
+        noted = #{noted,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where drug_num = #{drugNum,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhiyou.model.Drug">
+    update drug
+    set drug_url = #{drugUrl,jdbcType=VARCHAR},
+      purchas_price = #{purchasPrice,jdbcType=DOUBLE},
+      sale_price = #{salePrice,jdbcType=DOUBLE},
+      drug_name = #{drugName,jdbcType=VARCHAR},
+      drug_type = #{drugType,jdbcType=INTEGER},
+      simple_detail = #{simpleDetail,jdbcType=VARCHAR},
+      prodeced_date = #{prodecedDate,jdbcType=VARCHAR},
+      expiration_date = #{expirationDate,jdbcType=VARCHAR},
+      quality_date = #{qualityDate,jdbcType=INTEGER},
+      detail = #{detail,jdbcType=VARCHAR},
+      manufacture = #{manufacture,jdbcType=VARCHAR},
+      use_infor = #{useInfor,jdbcType=VARCHAR},
+      total_stock = #{totalStock,jdbcType=INTEGER},
+      surplus = #{surplus,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      noted = #{noted,jdbcType=VARCHAR}
+    where drug_num = #{drugNum,jdbcType=VARCHAR}
+  </update>
+</mapper>

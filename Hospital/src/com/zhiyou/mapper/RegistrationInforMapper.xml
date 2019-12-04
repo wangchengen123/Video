@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhiyou.mapper.RegistrationInforMapper">
+  <resultMap id="BaseResultMap" type="com.zhiyou.model.RegistrationInfor">
+    <result column="medical_record" jdbcType="VARCHAR" property="medicalRecord" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="certificate_type" jdbcType="VARCHAR" property="certificateType" />
+    <result column="ID_num" jdbcType="VARCHAR" property="idNum" />
+    <result column="social_safe_num" jdbcType="VARCHAR" property="socialSafeNum" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="self_paying" jdbcType="INTEGER" property="selfPaying" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="career" jdbcType="VARCHAR" property="career" />
+    <result column="early_appointment" jdbcType="VARCHAR" property="earlyAppointment" />
+    <result column="doctor_id" jdbcType="INTEGER" property="doctorId" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="noted" jdbcType="VARCHAR" property="noted" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="section_id" jdbcType="INTEGER" property="sectionId" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="registration_fee" jdbcType="DOUBLE" property="registrationFee" />
+  </resultMap>
+  <insert id="insert" parameterType="com.zhiyou.model.RegistrationInfor">
+    insert into registration_infor (medical_record, name, certificate_type, 
+      ID_num, social_safe_num, phone, 
+      self_paying, sex, career, 
+      early_appointment, doctor_id, status, 
+      noted, time, section_id, 
+      age, registration_fee)
+    values (#{medicalRecord,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{certificateType,jdbcType=VARCHAR}, 
+      #{idNum,jdbcType=VARCHAR}, #{socialSafeNum,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{selfPaying,jdbcType=INTEGER}, #{sex,jdbcType=INTEGER}, #{career,jdbcType=VARCHAR}, 
+      #{earlyAppointment,jdbcType=VARCHAR}, #{doctorId,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, 
+      #{noted,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, #{sectionId,jdbcType=INTEGER}, 
+      #{age,jdbcType=INTEGER}, #{registrationFee,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhiyou.model.RegistrationInfor">
+    insert into registration_infor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="medicalRecord != null">
+        medical_record,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="certificateType != null">
+        certificate_type,
+      </if>
+      <if test="idNum != null">
+        ID_num,
+      </if>
+      <if test="socialSafeNum != null">
+        social_safe_num,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="selfPaying != null">
+        self_paying,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="career != null">
+        career,
+      </if>
+      <if test="earlyAppointment != null">
+        early_appointment,
+      </if>
+      <if test="doctorId != null">
+        doctor_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="noted != null">
+        noted,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="sectionId != null">
+        section_id,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="registrationFee != null">
+        registration_fee,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="medicalRecord != null">
+        #{medicalRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateType != null">
+        #{certificateType,jdbcType=VARCHAR},
+      </if>
+      <if test="idNum != null">
+        #{idNum,jdbcType=VARCHAR},
+      </if>
+      <if test="socialSafeNum != null">
+        #{socialSafeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="selfPaying != null">
+        #{selfPaying,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="career != null">
+        #{career,jdbcType=VARCHAR},
+      </if>
+      <if test="earlyAppointment != null">
+        #{earlyAppointment,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorId != null">
+        #{doctorId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="noted != null">
+        #{noted,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sectionId != null">
+        #{sectionId,jdbcType=INTEGER},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="registrationFee != null">
+        #{registrationFee,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.zhiyou.model.RegistrationInfor">
+    <result column="medical_record" jdbcType="VARCHAR" property="medicalRecord" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="certificate_type" jdbcType="VARCHAR" property="certificateType" />
+    <result column="ID_num" jdbcType="VARCHAR" property="idNum" />
+    <result column="social_safe_num" jdbcType="VARCHAR" property="socialSafeNum" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="self_paying" jdbcType="INTEGER" property="selfPaying" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="career" jdbcType="VARCHAR" property="career" />
+    <result column="early_appointment" jdbcType="VARCHAR" property="earlyAppointment" />
+    <result column="doctor_id" jdbcType="INTEGER" property="doctorId" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="noted" jdbcType="VARCHAR" property="noted" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="section_id" jdbcType="INTEGER" property="sectionId" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="registration_fee" jdbcType="DOUBLE" property="registrationFee" />
+  </resultMap>
+  <insert id="insert" parameterType="com.zhiyou.model.RegistrationInfor">
+    insert into registration_infor (medical_record, name, certificate_type, 
+      ID_num, social_safe_num, phone, 
+      self_paying, sex, career, 
+      early_appointment, doctor_id, status, 
+      noted, time, section_id, 
+      age, registration_fee)
+    values (#{medicalRecord,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{certificateType,jdbcType=VARCHAR}, 
+      #{idNum,jdbcType=VARCHAR}, #{socialSafeNum,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{selfPaying,jdbcType=INTEGER}, #{sex,jdbcType=INTEGER}, #{career,jdbcType=VARCHAR}, 
+      #{earlyAppointment,jdbcType=VARCHAR}, #{doctorId,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, 
+      #{noted,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, #{sectionId,jdbcType=INTEGER}, 
+      #{age,jdbcType=INTEGER}, #{registrationFee,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhiyou.model.RegistrationInfor">
+    insert into registration_infor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="medicalRecord != null">
+        medical_record,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="certificateType != null">
+        certificate_type,
+      </if>
+      <if test="idNum != null">
+        ID_num,
+      </if>
+      <if test="socialSafeNum != null">
+        social_safe_num,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="selfPaying != null">
+        self_paying,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="career != null">
+        career,
+      </if>
+      <if test="earlyAppointment != null">
+        early_appointment,
+      </if>
+      <if test="doctorId != null">
+        doctor_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="noted != null">
+        noted,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="sectionId != null">
+        section_id,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="registrationFee != null">
+        registration_fee,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="medicalRecord != null">
+        #{medicalRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateType != null">
+        #{certificateType,jdbcType=VARCHAR},
+      </if>
+      <if test="idNum != null">
+        #{idNum,jdbcType=VARCHAR},
+      </if>
+      <if test="socialSafeNum != null">
+        #{socialSafeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="selfPaying != null">
+        #{selfPaying,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="career != null">
+        #{career,jdbcType=VARCHAR},
+      </if>
+      <if test="earlyAppointment != null">
+        #{earlyAppointment,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorId != null">
+        #{doctorId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="noted != null">
+        #{noted,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sectionId != null">
+        #{sectionId,jdbcType=INTEGER},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="registrationFee != null">
+        #{registrationFee,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.zhiyou.model.RegistrationInfor">
+    <result column="medical_record" jdbcType="VARCHAR" property="medicalRecord" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="certificate_type" jdbcType="VARCHAR" property="certificateType" />
+    <result column="ID_num" jdbcType="VARCHAR" property="idNum" />
+    <result column="social_safe_num" jdbcType="VARCHAR" property="socialSafeNum" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="self_paying" jdbcType="INTEGER" property="selfPaying" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="career" jdbcType="VARCHAR" property="career" />
+    <result column="early_appointment" jdbcType="VARCHAR" property="earlyAppointment" />
+    <result column="doctor_id" jdbcType="INTEGER" property="doctorId" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="noted" jdbcType="VARCHAR" property="noted" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="section_id" jdbcType="INTEGER" property="sectionId" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="registration_fee" jdbcType="DOUBLE" property="registrationFee" />
+  </resultMap>
+  <insert id="insert" parameterType="com.zhiyou.model.RegistrationInfor">
+    insert into registration_infor (medical_record, name, certificate_type, 
+      ID_num, social_safe_num, phone, 
+      self_paying, sex, career, 
+      early_appointment, doctor_id, status, 
+      noted, time, section_id, 
+      age, registration_fee)
+    values (#{medicalRecord,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{certificateType,jdbcType=VARCHAR}, 
+      #{idNum,jdbcType=VARCHAR}, #{socialSafeNum,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{selfPaying,jdbcType=INTEGER}, #{sex,jdbcType=INTEGER}, #{career,jdbcType=VARCHAR}, 
+      #{earlyAppointment,jdbcType=VARCHAR}, #{doctorId,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, 
+      #{noted,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, #{sectionId,jdbcType=INTEGER}, 
+      #{age,jdbcType=INTEGER}, #{registrationFee,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhiyou.model.RegistrationInfor">
+    insert into registration_infor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="medicalRecord != null">
+        medical_record,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="certificateType != null">
+        certificate_type,
+      </if>
+      <if test="idNum != null">
+        ID_num,
+      </if>
+      <if test="socialSafeNum != null">
+        social_safe_num,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="selfPaying != null">
+        self_paying,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="career != null">
+        career,
+      </if>
+      <if test="earlyAppointment != null">
+        early_appointment,
+      </if>
+      <if test="doctorId != null">
+        doctor_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="noted != null">
+        noted,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="sectionId != null">
+        section_id,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="registrationFee != null">
+        registration_fee,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="medicalRecord != null">
+        #{medicalRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateType != null">
+        #{certificateType,jdbcType=VARCHAR},
+      </if>
+      <if test="idNum != null">
+        #{idNum,jdbcType=VARCHAR},
+      </if>
+      <if test="socialSafeNum != null">
+        #{socialSafeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="selfPaying != null">
+        #{selfPaying,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="career != null">
+        #{career,jdbcType=VARCHAR},
+      </if>
+      <if test="earlyAppointment != null">
+        #{earlyAppointment,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorId != null">
+        #{doctorId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="noted != null">
+        #{noted,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sectionId != null">
+        #{sectionId,jdbcType=INTEGER},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="registrationFee != null">
+        #{registrationFee,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+</mapper>
